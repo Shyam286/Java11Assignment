@@ -1,0 +1,95 @@
+package com.java11;
+
+import java.util.Scanner;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Scanner;
+public class Que_5 {
+
+	static int rs = 0;
+	static int cnt= 0;
+
+			public static void main (String[] args) throws IOException
+			{
+				Scanner sc=new Scanner(System.in);				
+					System.out.println("1: Insert New Price, 2: View Purchase Total, 3:Exit");
+					int i=sc.nextInt();
+					
+					switch(i) {
+					case 1: 
+						    rs = call(i);
+							add (rs+"");
+							System.out.println("\n");
+							main(null);
+							break;
+					case 2:
+							System.out.println("Total Price of All Items"+ get() + "\n");
+	
+							main (null);
+							break;
+					case 3: 
+						   System.out.println("Exit Program");
+						    break;
+					
+			}
+		}
+
+			public static int call(int a)
+			{
+				Scanner sc=new Scanner(System.in);
+				cnt++;
+
+				System.out.println("Insert" + cnt + "st Price");
+				a = sc.nextInt();
+				rs =rs + a;
+				System.out.println("Price has been saved to the file \n");
+
+				System.out.println("Do you enter price for onne more value ? (yes/no)");
+
+				String ans = sc.next();
+
+				if (ans.equalsIgnoreCase("yes"))
+				{
+					call(a);
+					return rs;
+
+				}
+				else 
+				{
+					return rs;
+				}
+			}
+
+			public static void add (String value) throws IOException
+			{
+				FileOutputStream fout = new FileOutputStream("C:\\Users\\Downloads\\OutputFiles.txt");
+
+				byte [] b1 = value.getBytes();
+
+				fout.write(b1);
+
+				fout.close();	
+			}
+
+			public static int get() throws IOException
+			{
+				String res = "";
+				
+				FileInputStream fin = new FileInputStream ("C:\\Users\\Downloads\\OutputFiles.txt");
+
+				int i = 0;
+
+				while ((i = fin.read ()) != -1)
+				{
+					res = res+(char)i;
+				}
+
+				int output = Integer.parseInt(res);
+
+				fin.close();
+
+				return output;
+			}			
+		}
+

@@ -1,0 +1,27 @@
+package com.java11;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+public class ReadFile {
+	public static void main(String[] args) {
+		
+		var path="C:\\Users\\Downloads\\Java11Assignments_StudentList.txt";
+	
+		try {
+			String data=Files.readString(Path.of(path));
+			String s=data.replaceAll("\\s+"," ");
+		    String[] a=s.split(" ");
+			
+		    for(int i=0;i<a.length;i++) {
+		    	System.out.println(a[i]);
+		    }
+
+			System.out.println("No of student present in file: "+a.length);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+}
